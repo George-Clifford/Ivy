@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr Vivica..</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffe0ec, #f4f4f4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #d14d72;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .cards {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      flex: 1 1 220px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.4s ease;
+      max-width: 90%;
+      max-height: 90%;
+      overflow-y: auto;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+  <h1>Open When...</h1>
+
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="cards">
+    <div class="card" onclick="openMessage('smile')">You want to smile</div>
+    <div class="card" onclick="openMessage('bored')">You're bored</div>
+    <div class="card" onclick="openMessage('sad')">You're feeling sad</div>
+  </div>
+
+  <!-- Smile Modal -->
+  <div id="modal-smile" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeMessage('smile')">&times;</span>
+      <h2>😊 Say Cheese!</h2>
+      <p>You're such a vibe and you deserve to smile today 💖</p>
+      <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif" alt="smile gif">
+    </div>
+  </div>
+
+  <!-- Bored Modal -->
+  <div id="modal-bored" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeMessage('bored')">&times;</span>
+      <h2>🎲 Something Fun!</h2>
+      <p>Remember those random fun facts you serenade me with, the movie recommendations, the laughs</p>
+      <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" alt="cat gif">
+    </div>
+  </div>
+
+  <!-- Sad Modal -->
+  <div id="modal-sad" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeMessage('sad')">&times;</span>
+      <h2>💖 It's okay to be sad</h2>
+      <p>Sending you a big virtual hug 🤗. Never forget how you are amazing and such a wonderful person.<br>Everything will be okay.</p>
+      <img src="ivy.jpeg" alt="ivy nails">
+    </div>
+  </div>
+
+  <script>
+    function openMessage(id) {
+      document.getElementById('modal-' + id).classList.add('active');
+    }
+
+    function closeMessage(id) {
+      document.getElementById('modal-' + id).classList.remove('active');
+    }
+  </script>
+</body>
+</html>
